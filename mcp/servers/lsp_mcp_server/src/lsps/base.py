@@ -8,7 +8,7 @@ from lsprotocol import types, converters
 from abc import ABC, abstractmethod
 
 class LangServer(ABC):
-    def __init__(self, cmd, rootUri: str):
+    def __init__(self, cmd, root_uri: str):
         self.cmd = cmd
         self.proc = subprocess.Popen(
             self.cmd,
@@ -22,11 +22,11 @@ class LangServer(ABC):
 
         self._id = 0
         self.converter = converters.get_converter()
-        rootUri = rootUri if rootUri.startswith("file://") else f"file://{rootUri}"
+        root_uri = root_uri if root_uri.startswith("file://") else f"file://{root_uri}"
 
         self._send("initialize", {
             "processId": None,
-            "rootUri": f"file://{rootUri}",
+            "root_uri": f"file://{root_uri}",
             "capabilities": {},
         }, id=self._id)
         self._wait_for(self._id)
