@@ -1,7 +1,7 @@
-import pathlib
+from pathlib import Path
 import urllib.parse
 
-from lsprotocol import types
+from lsprotocol.types import SymbolKind, Position
 from base import LangServer
 
 class PythonLangServer(LangServer):
@@ -12,12 +12,12 @@ class PythonLangServer(LangServer):
     def language_id(self) -> str:
         return "python"
 
-    def locator(self, line: int, character: int, keyword: str, path: str) -> types.Position:
+    def locator(self, line: int, character: int, keyword: str, path: str) -> Position:
         if path.startswith("file://"):
             parsed = urllib.parse.urlparse(path)
-            file_path = pathlib.Path(urllib.parse.unquote(parsed.path))
+            file_path = Path(urllib.parse.unquote(parsed.path))
         else:
-            file_path = pathlib.Path(path)
+            file_path = Path(path)
 
         with file_path.open("r", encoding="utf-8") as f:
             lines = f.readlines()
@@ -36,16 +36,16 @@ class PythonLangServer(LangServer):
             expanded = lines[idx].expandtabs(4)
             col = expanded.find(keyword)
             if col != -1:
-                return types.Position(line=idx, character=col)
+                return Position(line=idx, character=col)
 
         fallback_line = normalize_line_index(line - 1)
         fallback_char = max(0, character - 1)
-        return types.Position(line=fallback_line, character=fallback_char)
+        return Position(line=fallback_line, character=fallback_char)
 
 if __name__ == "__main__":
-    pylsp = PythonLangServer(
-        root_uri='/Users/nahemah1022/Projects/DeepRepo/mcp/servers/lsp_mcp_server/src/lsps'
-    )
+    workspace_root = Path("/Users/nahemah1022/Projects/DeepRepo").resolve()
+    pylsp = PythonLangServer(root_uri=str(workspace_root))
+
     definition = pylsp.show_definition(
         path="/Users/nahemah1022/Projects/DeepRepo/mcp/servers/lsp_mcp_server/src/lsps/python.py", 
         line=49, character=24, keyword="show_definition",
@@ -57,3 +57,15 @@ if __name__ == "__main__":
         line=49, character=24, keyword="show_definition",
     )
     print(show_hover)
+
+    ref = pylsp.references(
+        path="/Users/nahemah1022/Projects/DeepRepo/mcp/servers/lsp_mcp_server/src/lsps/python.py", 
+        line=49, character=24, keyword="show_definition",
+    )
+    print(ref)
+
+    symbols = pylsp.document_symbols(
+        path="/Users/nahemah1022/Projects/DeepRepo/mcp/servers/lsp_mcp_server/src/lsps/python.py",
+        kind_filter=[SymbolKind.Function, SymbolKind.Class]
+    )
+    print(symbols)

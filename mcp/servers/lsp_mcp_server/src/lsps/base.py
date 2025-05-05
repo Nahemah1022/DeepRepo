@@ -6,6 +6,7 @@ import select
 from abc import ABC, abstractmethod
 from pathlib import Path
 from urllib.parse import urlparse, unquote
+from typing import Union, Any
 
 from lsprotocol import types, converters
 
@@ -159,6 +160,83 @@ class LangServer(ABC):
             )
         )
         return self.converter.structure(result["result"], types.Hover).contents.value
+
+    def references(self, line: int, character: int, keyword: str, path: str) -> list[types.Location]:
+        """
+        Retrieves all references (including definition) to the given symbol in the codebase.
+
+        This includes variable usages, function calls, and class references depending on context.
+
+        Args:
+            line: Approximate line number where the keyword appears.
+            character: Approximate character offset on the line.
+            keyword: The target symbol to retrieve references for.
+            path: Path to the source file (with or without 'file://' prefix).
+
+        Returns:
+            A list of `types.Location` where the symbol is referenced.
+        """
+        uri = Path(path).resolve().as_uri() if not path.startswith("file://") else path
+        self._open(uri)
+
+        position = self.locator(line, character, keyword, path)
+        result = self.request(
+            types.TextDocumentReferencesRequest,
+            params=types.ReferenceParams(
+                text_document=types.TextDocumentIdentifier(uri=uri),
+                position=position,
+                context=types.ReferenceContext(include_declaration=True)
+            )
+        )
+        return self.converter.structure(result["result"], list[types.Location])
+
+    def document_symbols(
+        self,
+        path: str,
+        kind_filter: Union[types.SymbolKind, list[types.SymbolKind], None] = None
+    ) -> Union[list[types.DocumentSymbol], list[types.SymbolInformation]]:
+        """
+        Retrieves symbols defined in the given file, optionally filtering by symbol kind(s).
+
+        Args:
+            path: Path to the source file.
+            kind_filter: Optional single or list of SymbolKind values to include (e.g., Function, Variable).
+
+        Returns:
+            A filtered list of DocumentSymbol or SymbolInformation.
+        """
+        uri = Path(path).resolve().as_uri() if not path.startswith("file://") else path
+        self._open(uri)
+
+        result = self.request(
+            types.TextDocumentDocumentSymbolRequest,
+            params=types.DocumentSymbolParams(
+                text_document=types.TextDocumentIdentifier(uri=uri)
+            )
+        )
+
+        raw = result.get("result", [])
+
+        if not raw:
+            return []
+
+        # Normalize kind_filter to a set of SymbolKinds
+        if kind_filter is not None:
+            if isinstance(kind_filter, types.SymbolKind):
+                kind_filter = {kind_filter}
+            else:
+                kind_filter = set(kind_filter)
+
+        def filter_by_kind(symbols: list[Any]) -> list[Any]:
+            def match(s): return kind_filter is None or s.kind in kind_filter
+            return [s for s in symbols if match(s)]
+
+        if "range" in raw[0]:  # DocumentSymbol
+            structured = self.converter.structure(raw, list[types.DocumentSymbol])
+            return filter_by_kind(structured)
+        else:  # SymbolInformation
+            structured = self.converter.structure(raw, list[types.SymbolInformation])
+            return filter_by_kind(structured)
 
     @property
     @abstractmethod
