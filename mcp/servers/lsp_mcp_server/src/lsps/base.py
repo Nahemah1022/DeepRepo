@@ -3,9 +3,11 @@ import threading
 import json
 import time
 import select
+from abc import ABC, abstractmethod
+from pathlib import Path
+from urllib.parse import urlparse, unquote
 
 from lsprotocol import types, converters
-from abc import ABC, abstractmethod
 
 class LangServer(ABC):
     def __init__(self, cmd, root_uri: str):
@@ -22,31 +24,26 @@ class LangServer(ABC):
 
         self._id = 0
         self.converter = converters.get_converter()
-        root_uri = root_uri if root_uri.startswith("file://") else f"file://{root_uri}"
+        root_uri = Path(root_uri).resolve().as_uri() if not root_uri.startswith("file://") else root_uri
 
-        self._send("initialize", {
-            "processId": None,
-            "root_uri": f"file://{root_uri}",
-            "capabilities": {},
-        }, id=self._id)
-        self._wait_for(self._id)
-
-        self._send("initialized", {})
+        self.request(
+            types.InitializeRequest,
+            params=types.InitializeParams(
+                process_id=None,
+                root_uri=root_uri,
+                capabilities=types.ClientCapabilities(),
+            )
+        )
+        self.notify(types.InitializedNotification(params=types.InitializedParams()))
 
     def _read_stderr(self):
         for line in self.proc.stderr:
             print("[stderr]", line.strip())
 
-    def _send(self, method, params, id=None):
+    def _send(self, msg):
         if not self.proc:
             raise RuntimeError("LSP process not started.")
-        payload = {
-            "jsonrpc": "2.0",
-            "method": method,
-            "params": params,
-        }
-        if id is not None:
-            payload["id"] = id
+        payload = self.converter.unstructure(msg)
         body = json.dumps(payload)
         header = f"Content-Length: {len(body)}\r\n\r\n"
         self.proc.stdin.write(header + body)
@@ -78,19 +75,31 @@ class LangServer(ABC):
                 return message
         return None
 
-    def request(self, method, params):
+    def request(self, cls: types.REQUESTS, params) -> types.RESPONSES:
         self._id += 1
-        self._send(method, params, id=self._id)
+        msg = cls(params=params, id=self._id)
+        self._send(msg)
         return self._wait_for(self._id)
 
+    def notify(self, msg: types.NOTIFICATIONS):
+        return self._send(msg)
+
     def _open(self, uri: str):
-        self._send("textDocument/didOpen", {
-            "textDocument": {
-                "uri": uri,
-                "languageId": self.language_id,
-                "version": 1,
-            }
-        })
+        self.notify(types.TextDocumentDidOpenNotification(
+            params=types.DidOpenTextDocumentParams(
+                text_document=types.TextDocumentItem(
+                    uri=uri,
+                    language_id=self.language_id,
+                    version=1,
+                    text=self._read_file_from_uri(uri)
+                )
+            )
+        ))
+
+    def _read_file_from_uri(self, uri: str) -> str:
+        parsed = urlparse(uri)
+        file_path = Path(unquote(parsed.path))
+        return file_path.read_text(encoding="utf-8")
 
     def show_definition(self, line: int, character: int, keyword: str, path: str) -> types.Location:
         """
@@ -109,15 +118,16 @@ class LangServer(ABC):
         Returns:
             A `types.Location` object representing the definition location.
         """
-        uri = path if path.startswith("file://") else f"file://{path}"
+        uri = Path(path).resolve().as_uri() if not path.startswith("file://") else path
         self._open(uri)
 
-        position = self.locator(line, character, keyword, path)
-        result = self.request("textDocument/definition", {
-            "textDocument": {"uri": uri},
-            "position": self.converter.unstructure(position, unstructure_as=types.Position),
-        })
-
+        result = self.request(
+            types.TextDocumentDefinitionRequest,
+            params=types.DefinitionParams(
+                text_document=types.TextDocumentIdentifier(uri=uri),
+                position=self.locator(line, character, keyword, path),
+            )
+        )
         return self.converter.structure(result, types.TextDocumentTypeDefinitionResponse).result
 
     def hover(self, line: int, character: int, keyword: str, path: str) -> types.Hover:
@@ -138,20 +148,22 @@ class LangServer(ABC):
         Returns:
             A `types.Hover` object containing reference/documentation information.
         """
-        uri = path if path.startswith("file://") else f"file://{path}"
+        uri = Path(path).resolve().as_uri() if not path.startswith("file://") else path
         self._open(uri)
 
-        position = self.locator(line, character, keyword, path)
-        result = self.request("textDocument/hover", {
-            "textDocument": {"uri": uri},
-            "position": self.converter.unstructure(position, unstructure_as=types.Position),
-        })
-
+        result = self.request(
+            types.TextDocumentHoverRequest,
+            params=types.HoverParams(
+                text_document=types.TextDocumentIdentifier(uri=uri),
+                position=self.locator(line, character, keyword, path),
+            )
+        )
         return self.converter.structure(result["result"], types.Hover).contents.value
 
     @property
     @abstractmethod
     def language_id(self) -> str:
+        """LSP language ID, e.g., 'python', 'cpp', etc."""
         pass
 
     @abstractmethod
