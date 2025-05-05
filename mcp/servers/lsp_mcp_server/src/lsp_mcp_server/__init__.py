@@ -5,10 +5,10 @@ import sys
 from .server import serve
 
 @click.command()
-@click.option("--endpoint", "-r", type=Path, help="")
+@click.option("--repository", "-r", type=Path, help="")
 @click.option("-v", "--verbose", count=True)
-def main(endpoint: str | None, verbose: bool) -> None:
-    """MCP Git Server - Git functionality for MCP"""
+def main(repository: str | None, verbose: bool) -> None:
+    """MCP LSP Server - Language Server functionality for MCP"""
     import asyncio
 
     logging_level = logging.WARN
@@ -18,7 +18,7 @@ def main(endpoint: str | None, verbose: bool) -> None:
         logging_level = logging.DEBUG
 
     logging.basicConfig(level=logging_level, stream=sys.stderr)
-    asyncio.run(serve(endpoint))
+    asyncio.run(serve(repository))
 
 if __name__ == "__main__":
     main()

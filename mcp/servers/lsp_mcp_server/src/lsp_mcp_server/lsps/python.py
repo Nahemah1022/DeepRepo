@@ -2,7 +2,7 @@ from pathlib import Path
 import urllib.parse
 
 from lsprotocol.types import SymbolKind, Position
-from base import LangServer
+from lsp_mcp_server.lsps.base import LangServer
 
 class PythonLangServer(LangServer):
     def __init__(self, root_uri: str):
@@ -43,29 +43,29 @@ class PythonLangServer(LangServer):
         return Position(line=fallback_line, character=fallback_char)
 
 if __name__ == "__main__":
-    workspace_root = Path("/Users/nahemah1022/Projects/DeepRepo").resolve()
+    workspace_root = Path("/Users/nahemah1022/NVIDIA/proj/aistore/python").resolve()
     pylsp = PythonLangServer(root_uri=str(workspace_root))
 
-    definition = pylsp.show_definition(
-        path="/Users/nahemah1022/Projects/DeepRepo/mcp/servers/lsp_mcp_server/src/lsps/python.py", 
-        line=49, character=24, keyword="show_definition",
-    )
-    print(definition)
+    # definition = pylsp.show_definition(
+    #     path="/Users/nahemah1022/Projects/DeepRepo/mcp/servers/lsp_mcp_server/src/lsps/python.py", 
+    #     line=49, character=24, keyword="show_definition",
+    # )
+    # print(definition)
 
-    show_hover = pylsp.hover(
-        path="/Users/nahemah1022/Projects/DeepRepo/mcp/servers/lsp_mcp_server/src/lsps/python.py", 
-        line=49, character=24, keyword="show_definition",
-    )
-    print(show_hover)
+    # show_hover = pylsp.hover(
+    #     path="/Users/nahemah1022/Projects/DeepRepo/mcp/servers/lsp_mcp_server/src/lsps/python.py", 
+    #     line=49, character=24, keyword="show_definition",
+    # )
+    # print(show_hover)
 
-    ref = pylsp.references(
-        path="/Users/nahemah1022/Projects/DeepRepo/mcp/servers/lsp_mcp_server/src/lsps/python.py", 
-        line=49, character=24, keyword="show_definition",
-    )
-    print(ref)
+    # ref = pylsp.references(
+    #     path="/Users/nahemah1022/Projects/DeepRepo/mcp/servers/lsp_mcp_server/src/lsps/python.py", 
+    #     line=49, character=24, keyword="show_definition",
+    # )
+    # print(ref)
 
     symbols = pylsp.document_symbols(
-        path="/Users/nahemah1022/Projects/DeepRepo/mcp/servers/lsp_mcp_server/src/lsps/python.py",
+        path="/Users/nahemah1022/NVIDIA/proj/aistore/python/aistore/sdk/obj/object_reader.py",
         kind_filter=[SymbolKind.Function, SymbolKind.Class]
     )
     print(symbols)
