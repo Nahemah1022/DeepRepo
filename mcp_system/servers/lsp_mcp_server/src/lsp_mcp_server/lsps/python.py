@@ -2,7 +2,7 @@ from pathlib import Path
 import urllib.parse
 
 from lsprotocol.types import SymbolKind, Position
-from lsp_mcp_server.lsps.base import LangServer
+from mcp_system.servers.lsp_mcp_server.src.lsp_mcp_server.lsps.base import LangServer
 
 class PythonLangServer(LangServer):
     def __init__(self, root_uri: str):

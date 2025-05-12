@@ -8,7 +8,8 @@ from pathlib import Path
 
 from lsprotocol.types import SymbolKind
 from typing import Union, Annotated
-from lsp_mcp_server.lsps.python import PythonLangServer
+from mcp_system.servers.lsp_mcp_server.src.lsp_mcp_server.lsps.python import PythonLangServer
+# from mcp.servers.lsp_mcp_server.src.lsp_mcp_server.lsps.python import PythonLangServer
 
 logger = logging.getLogger(__name__)
 
