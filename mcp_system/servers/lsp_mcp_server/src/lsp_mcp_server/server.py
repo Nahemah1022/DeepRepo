@@ -8,8 +8,7 @@ from pathlib import Path
 
 from lsprotocol.types import SymbolKind
 from typing import Union, Annotated
-from mcp_system.servers.lsp_mcp_server.src.lsp_mcp_server.lsps.python import PythonLangServer
-# from mcp.servers.lsp_mcp_server.src.lsp_mcp_server.lsps.python import PythonLangServer
+from lsp_mcp_server.lsps.python import PythonLangServer
 
 logger = logging.getLogger(__name__)
 
@@ -53,7 +52,7 @@ class LSPTools(str, Enum):
     ShowDefinition = "show_definition"
     HoverInformation = "hover_information"
     References = "references"
-    DocumentSymbols = "document_symbols"
+    # DocumentSymbols = "document_symbols"
 
 # -- Server and Handlers --
 
@@ -80,11 +79,11 @@ async def serve(repository: Path) -> None:
                 description="Retrieves all references (including definition) to the given symbol in the codebase. This includes variable usages, function calls, and class references depending on context.",
                 inputSchema=References.model_json_schema()
             ),
-            Tool(
-                name=LSPTools.DocumentSymbols,
-                description="Retrieves symbols defined in the given file, optionally filtering by symbol kind(s). kind_filter: Optional single or list of SymbolKind values to include (e.g., Function, Variable).",
-                inputSchema=DocumentSymbols.model_json_schema()
-            ),
+            # Tool(
+            #     name=LSPTools.DocumentSymbols,
+            #     description="Retrieves symbols defined in the given file, optionally filtering by symbol kind(s). kind_filter: Optional single or list of SymbolKind values to include (e.g., Function, Variable).",
+            #     inputSchema=DocumentSymbols.model_json_schema()
+            # ),
         ]
 
     @server.call_tool()
@@ -122,12 +121,12 @@ async def serve(repository: Path) -> None:
                 logger.debug(f"[RETURNED] {result.__str__()}")
                 return [TextContent(type="text", text=result.__str__())]
 
-            case LSPTools.DocumentSymbols:
-                result = pylsp.document_symbols(
-                    path=arguments["file_path"]
-                )
-                logger.debug(f"[RETURNED] {result.__str__()}")
-                return [TextContent(type="text", text=result.__str__())]
+            # case LSPTools.DocumentSymbols:
+            #     result = pylsp.document_symbols(
+            #         path=arguments["file_path"]
+            #     )
+            #     logger.debug(f"[RETURNED] {result.__str__()}")
+            #     return [TextContent(type="text", text=result.__str__())]
 
             case _:
                 raise ValueError(f"Unknown tool: {name}")

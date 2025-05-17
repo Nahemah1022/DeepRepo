@@ -32,21 +32,15 @@ class MCPClient:
     # methods will go here
 
 
-    async def connect_to_server(self, server_script_path: str):
+    async def connect_to_server(self, server_script_path: str, args: list[str]):
         """Connect to an MCP server
 
         Args:
             server_script_path: Path to the server script (.py or .js)
         """
-        is_python = server_script_path.endswith('.py')
-        is_js = server_script_path.endswith('.js')
-        if not (is_python or is_js):
-            raise ValueError("Server script must be a .py or .js file")
-
-        command = "python3" if is_python else "node"
         server_params = StdioServerParameters(
-            command=command,
-            args=[server_script_path],
+            command=server_script_path,
+            args=args,
             env=None
         )
 
@@ -165,12 +159,12 @@ class MCPClient:
 
 async def main():
     if len(sys.argv) < 2:
-        print("Usage: python client.py <path_to_server_script>")
+        print("Usage: python client.py <server_script> [args_for_server_script...]")
         sys.exit(1)
 
     client = MCPClient()
     try:
-        await client.connect_to_server(sys.argv[1])
+        await client.connect_to_server(sys.argv[1], sys.argv[2:])
         await client.chat_loop()
     finally:
         await client.cleanup()
