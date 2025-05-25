@@ -91,7 +91,7 @@ class MCPClient:
                 logging.info("BOWEN YANG DEBUG trigger text")
                 final_text.append(content.text)
                 assistant_message_content.append(content)
-                logging.info("BOWEN YANG DEBUG FINAL text in text mode: {}, assistent message content {}".format(final_text,assistant_message_content))
+                logging.info("BOWEN YANG DEBUG FINAL text in text mode: {}, assistent message content {}".format(final_text, assistant_message_content))
             elif content.type == 'tool_use':
                 logging.info("BOWEN YANG DEBUG trigger tool_use")
                 tool_name = content.name

@@ -3,6 +3,7 @@
 ## Setup
 
 ```
+# in Client
 uv sync
 uv run test_repeat_client.py ../servers/lsp_mcp_server/.venv/bin/lsp-mcp-server -r <some-python-repo-root-path>
 ```
