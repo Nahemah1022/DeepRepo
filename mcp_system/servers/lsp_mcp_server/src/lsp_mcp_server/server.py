@@ -14,6 +14,9 @@ logger = logging.getLogger(__name__)
 
 # -- Pydantic Input Models --
 
+class FileReader(BaseModel):
+    file_path: str
+
 class ShowDefinition(BaseModel):
     line_num: int
     character_num: int
@@ -53,6 +56,7 @@ class LSPTools(str, Enum):
     HoverInformation = "hover_information"
     References = "references"
     # DocumentSymbols = "document_symbols"
+    FileReader = "file_reader"
 
 # -- Server and Handlers --
 
@@ -84,6 +88,11 @@ async def serve(repository: Path) -> None:
             #     description="Retrieves symbols defined in the given file, optionally filtering by symbol kind(s). kind_filter: Optional single or list of SymbolKind values to include (e.g., Function, Variable).",
             #     inputSchema=DocumentSymbols.model_json_schema()
             # ),
+            Tool(
+                name=LSPTools.FileReader,
+                description="Read and return the content of the entire file at the given filepath",
+                inputSchema=FileReader.model_json_schema()
+            )
         ]
 
     @server.call_tool()
@@ -127,6 +136,14 @@ async def serve(repository: Path) -> None:
             #     )
             #     logger.debug(f"[RETURNED] {result.__str__()}")
             #     return [TextContent(type="text", text=result.__str__())]
+
+            case LSPTools.FileReader:
+                try:
+                    with open(arguments['file_path'], 'r') as file:
+                        content = file.read()
+                    return [TextContent(type="text", text=content)]
+                except FileNotFoundError:
+                    print(f"Error: The file at {arguments['file_path']} was not found.")
 
             case _:
                 raise ValueError(f"Unknown tool: {name}")

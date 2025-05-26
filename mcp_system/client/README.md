@@ -11,6 +11,11 @@ uv run test_repeat_client.py ../servers/lsp_mcp_server/.venv/bin/lsp-mcp-server 
 
 Prompt:
 ```
+Use the `FileReader` tool to get the file content at host path `/Users/nahemah1022/NVIDIA/proj/aistore/python/aistore/sdk/obj/object.py` and summarize what it does.
+```
+
+Prompt:
+```
 Use the `HoverInformation` tool to get information of the Object class at file path `<some-python-repo-root-path>/<file-path-of-your-interest>`. line_num is 64, and character_num is 9. Figure out the keyword to use by yourself
 ```
 
