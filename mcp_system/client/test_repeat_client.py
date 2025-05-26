@@ -10,12 +10,6 @@ from dotenv import load_dotenv
 
 import logging
 
-load_dotenv()  # load environment variables from .env
-
-
-from dotenv import load_dotenv
-import logging
-
 load_dotenv()
 
 logging.basicConfig(

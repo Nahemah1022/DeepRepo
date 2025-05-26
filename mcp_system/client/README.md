@@ -27,3 +27,6 @@ The hover information shows that `Object` is a class that handles interactions w
 
 The class is designed to provide methods for working with objects within the AIStore system.
 ```
+
+
+I want to see mcp_system/client/deep_reader.py connect_to_server function at ln 42 col 68 spaces 4. what does it do? And also the next mcp_system/client/deep_reader.py cleanup line 174 col 22. If you didn't get any respond from hovering tool, directly do the next mission
