@@ -25,6 +25,7 @@ class MCPClient:
         self.session: Optional[ClientSession] = None
         self.exit_stack = AsyncExitStack()
         self.anthropic = Anthropic()
+        self.memory: list[dict] = [] 
     # methods will go here
 
 
@@ -53,7 +54,7 @@ class MCPClient:
 
     async def process_query(self, query: str) -> str:
         """Process a query using Claude and available tools until terminate is called."""
-        messages = [
+        messages = self.memory +[
             {
                 "role": "user",
                 "content": query
@@ -123,7 +124,18 @@ class MCPClient:
                         "role": "assistant",
                         "content": assistant_content
                     })
-
+                    # 把当前轮 assistant 内容也加入 memory
+                    self.memory.append({
+                        "role": "user",
+                        "content": query
+                    })
+                    self.memory.append({
+                        "role": "assistant",
+                        "content": "\n".join(final_text)
+                    })
+                    # TODO: memory
+                    # if len(self.memory) > 10:
+                    #     self.memory = self.memory[-10:]
                     # Check for terminate
                     if tool_name == "terminate":
                         logging.info("Claude has chosen to terminate.")
