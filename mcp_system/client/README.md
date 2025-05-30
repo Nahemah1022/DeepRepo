@@ -13,12 +13,59 @@ uv run deep_reader.py ../servers/lsp_mcp_server/.venv/bin/lsp-mcp-server -r <som
 
 ## Example Prompts
 
-Prompt:
+Prompt to use `FileReader` tool:
 ```
 Use the `FileReader` tool to get the file content at host path `/Users/nahemah1022/NVIDIA/proj/aistore/python/aistore/sdk/obj/object.py` and summarize what it does.
 ```
 
-Prompt:
+Prompt to use `SymbolLocator` tool:
+```
+Use the `SymbolLocator` tool to get all locations of the keyword `url` at `/Users/nahemah1022/NVIDIA/proj/aistore/python/aistore/sdk/request_client.py`.
+```
+
+Answer:
+```
+I'll help you use the `symbol_extractor` (SymbolLocator) tool to find all locations of the keyword "url" in the specified file. I have all the required parameters:
+- file_path: "/Users/nahemah1022/NVIDIA/proj/aistore/python/aistore/sdk/request_client.py"
+- keyword: "url"
+
+Let me make the tool call:
+[Calling tool symbol_extractor with args {'file_path': '/Users/nahemah1022/NVIDIA/proj/aistore/python/aistore/sdk/request_client.py', 'keyword': 'url'}]
+The tool has found 13 occurrences of the keyword "url" in the specified file. Here are all the locations:
+1. Line 181, character 27
+2. Line 203, character 12
+3. Line 211, character 11
+4. Line 213, character 24
+5. Line 216, character 53
+6. Line 241, character 8
+7. Line 250, character 53
+8. Line 254, character 27
+9. Line 268, character 12
+10. Line 268, character 35 (appears twice on this line)
+11. Line 284, character 60
+12. Line 291, character 39
+13. Line 295, character 60
+
+Each occurrence is listed with its exact line number and character position in the file. Would you like to examine any of these occurrences in more detail using other available tools?
+```
+
+Prompt to use `DocumentSymbols` tool:
+```
+use the `DocumentSymbols` tool to get all Class symbols in the `/Users/nahemah1022/NVIDIA/proj/aistore/python/aistore/sdk/obj/object_reader.py` file
+```
+
+Answer:
+```
+I'll help you use the `DocumentSymbols` tool to get all Class symbols from the specified file. Since you want specifically Class symbols, I'll use the kind_filter parameter with the value 5 (which represents Class in the SymbolKind enum).
+[Calling tool document_symbols with args {'file_path': '/Users/nahemah1022/NVIDIA/proj/aistore/python/aistore/sdk/obj/object_reader.py', 'kind_filter': 5}]
+Looking at the results, there is one class defined in this file:
+
+- `ObjectReader` (defined from line 16 to line 128)
+
+The results also show all the methods and variables associated with this class, but since you specifically asked for Class symbols, the main relevant result is the ObjectReader class itself.
+```
+
+Prompt to use `HoverInformation` tool:
 ```
 Use the `HoverInformation` tool to get information of the Object class at file path `<some-python-repo-root-path>/<file-path-of-your-interest>`. line_num is 64, and character_num is 9. Figure out the keyword to use by yourself
 ```

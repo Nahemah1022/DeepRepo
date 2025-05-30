@@ -1,4 +1,6 @@
 import logging
+import re
+import json
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 from mcp.types import Tool, TextContent
@@ -9,6 +11,7 @@ from pathlib import Path
 from lsprotocol.types import SymbolKind
 from typing import Union, Annotated
 from lsp_mcp_server.lsps.python import PythonLangServer
+from lsp_mcp_server.graph import Symbol, Position
 
 logger = logging.getLogger(__name__)
 
@@ -16,6 +19,10 @@ logger = logging.getLogger(__name__)
 
 class FileReader(BaseModel):
     file_path: str
+
+class SymbolLocator(BaseModel):
+    file_path: str
+    keyword: str
 
 class ShowDefinition(BaseModel):
     line_num: int
@@ -36,14 +43,14 @@ class References(BaseModel):
     file_path: str
 
 class DocumentSymbols(BaseModel):
-    path: str
+    file_path: str
     kind_filter: Annotated[
         Union[SymbolKind, list[SymbolKind], None],
         Field(
             description="Optional symbol kind(s) to include (e.g., Function, Variable, Class).",
             json_schema_extra={
                 "examples": ["Function", ["Function", "Class"]],
-                "type": ["string", "array"],
+                "type": ["integer", "array"],
                 "items": {"enum": [e.name for e in SymbolKind]},
             },
         ),
@@ -55,8 +62,9 @@ class LSPTools(str, Enum):
     ShowDefinition = "show_definition"
     HoverInformation = "hover_information"
     References = "references"
-    # DocumentSymbols = "document_symbols"
+    DocumentSymbols = "document_symbols"
     FileReader = "file_reader"
+    SymbolLocator = "symbol_extractor"
 
 # -- Server and Handlers --
 
@@ -83,15 +91,20 @@ async def serve(repository: Path) -> None:
                 description="Retrieves all references (including definition) to the given symbol in the codebase. This includes variable usages, function calls, and class references depending on context.",
                 inputSchema=References.model_json_schema()
             ),
-            # Tool(
-            #     name=LSPTools.DocumentSymbols,
-            #     description="Retrieves symbols defined in the given file, optionally filtering by symbol kind(s). kind_filter: Optional single or list of SymbolKind values to include (e.g., Function, Variable).",
-            #     inputSchema=DocumentSymbols.model_json_schema()
-            # ),
+            Tool(
+                name=LSPTools.DocumentSymbols,
+                description="Retrieves symbols defined in the given file, optionally filtering by symbol kind(s). kind_filter: Optional single or list of SymbolKind values to include (e.g., Function, Variable).",
+                inputSchema=DocumentSymbols.model_json_schema()
+            ),
             Tool(
                 name=LSPTools.FileReader,
                 description="Read and return the content of the entire file at the given filepath",
                 inputSchema=FileReader.model_json_schema()
+            ),
+            Tool(
+                name=LSPTools.SymbolLocator,
+                description="Return all symbols that matches to the keyword in the given filepath",
+                inputSchema=SymbolLocator.model_json_schema()
             )
         ]
 
@@ -107,7 +120,6 @@ async def serve(repository: Path) -> None:
                     keyword=arguments["keyword"],
                     path=arguments["file_path"],
                 )
-                logger.debug(f"[RETURNED] {result.__str__()}")
                 return [TextContent(type="text", text=result.__str__())]
 
             case LSPTools.HoverInformation:
@@ -117,7 +129,6 @@ async def serve(repository: Path) -> None:
                     keyword=arguments["keyword"],
                     path=arguments["file_path"],
                 )
-                logger.debug(f"[RETURNED] {result.__str__()}")
                 return [TextContent(type="text", text=result.__str__())]
 
             case LSPTools.References:
@@ -127,15 +138,13 @@ async def serve(repository: Path) -> None:
                     keyword=arguments["keyword"],
                     path=arguments["file_path"],
                 )
-                logger.debug(f"[RETURNED] {result.__str__()}")
                 return [TextContent(type="text", text=result.__str__())]
 
-            # case LSPTools.DocumentSymbols:
-            #     result = pylsp.document_symbols(
-            #         path=arguments["file_path"]
-            #     )
-            #     logger.debug(f"[RETURNED] {result.__str__()}")
-            #     return [TextContent(type="text", text=result.__str__())]
+            case LSPTools.DocumentSymbols:
+                result = pylsp.document_symbols(
+                    path=arguments["file_path"]
+                )
+                return [TextContent(type="text", text=result.__str__())]
 
             case LSPTools.FileReader:
                 try:
@@ -144,7 +153,18 @@ async def serve(repository: Path) -> None:
                     return [TextContent(type="text", text=content)]
                 except FileNotFoundError:
                     print(f"Error: The file at {arguments['file_path']} was not found.")
-
+            
+            case LSPTools.SymbolLocator:
+                keyword, file_path = arguments['keyword'], arguments['file_path']
+                matches = []
+                pattern = r'\b' + re.escape(keyword) + r'\b'
+                with open(file_path, 'r', encoding='utf-8') as file:
+                    for line_number, line in enumerate(file, start=0):
+                        for match in re.finditer(pattern, line):
+                            column_number = match.start()
+                            symbol = Symbol(name=keyword, position=Position(line=line_number, character=column_number))
+                            matches.append(symbol)
+                    return [TextContent(type="text", text=json.dumps([symbol.dict() for symbol in matches]))]
             case _:
                 raise ValueError(f"Unknown tool: {name}")
 
