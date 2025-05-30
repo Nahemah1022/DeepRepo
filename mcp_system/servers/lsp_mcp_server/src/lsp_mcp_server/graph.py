@@ -9,10 +9,12 @@ class Link(BaseModel):
     src: str  # name of the source Symbol
     dst: str  # name of the destination Symbol
     invoke_position: Position
+    context: str
 
 class Symbol(BaseModel):
     name: str
     position: Position
+    context: str
     links: List[Link] = []  # list of outbound links
 
     def add_link(self, link: Link):

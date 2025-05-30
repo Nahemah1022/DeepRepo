@@ -157,12 +157,21 @@ async def serve(repository: Path) -> None:
             case LSPTools.SymbolLocator:
                 keyword, file_path = arguments['keyword'], arguments['file_path']
                 matches = []
+                context_size = 3
+                context = []
                 pattern = r'\b' + re.escape(keyword) + r'\b'
                 with open(file_path, 'r', encoding='utf-8') as file:
                     for line_number, line in enumerate(file, start=0):
+                        if len(context) == context_size:
+                            context.pop(0)
+                        context.append(line)
                         for match in re.finditer(pattern, line):
                             column_number = match.start()
-                            symbol = Symbol(name=keyword, position=Position(line=line_number, character=column_number))
+                            symbol = Symbol(
+                                name=keyword,
+                                context='\n'.join(context),  # Join the context list into a single string
+                                position=Position(line=line_number, character=column_number)
+                            )
                             matches.append(symbol)
                     return [TextContent(type="text", text=json.dumps([symbol.dict() for symbol in matches]))]
             case _:
