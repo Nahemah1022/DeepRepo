@@ -6,7 +6,7 @@ import select
 from abc import ABC, abstractmethod
 from pathlib import Path
 from urllib.parse import urlparse, unquote
-from typing import Union, Any
+from typing import Union, Any, Set, Tuple
 
 from lsprotocol import types, converters
 
@@ -33,6 +33,9 @@ class LangServer(ABC):
                 process_id=None,
                 root_uri=root_uri,
                 capabilities=types.ClientCapabilities(),
+                workspace_folders=[
+                    types.WorkspaceFolder(uri=root_uri, name=Path(root_uri).name)
+                ],
             )
         )
         self.notify(types.InitializedNotification(params=types.InitializedParams()))
@@ -121,7 +124,7 @@ class LangServer(ABC):
         """
         uri = Path(path).resolve().as_uri() if not path.startswith("file://") else path
         self._open(uri)
-
+        print(f"[Locator] {self.locator(line, character, keyword, path)}")
         result = self.request(
             types.TextDocumentDefinitionRequest,
             params=types.DefinitionParams(
@@ -242,6 +245,27 @@ class LangServer(ABC):
     @abstractmethod
     def language_id(self) -> str:
         """LSP language ID, e.g., 'python', 'cpp', etc."""
+        pass
+
+    @property
+    @abstractmethod
+    def separators(self) -> Set[str]:
+        pass
+
+    @property
+    @abstractmethod
+    def keywords(self) -> Set[str]:
+        # Define any string keywords you want to exclude from scanning
+        pass
+
+    @property
+    @abstractmethod
+    def inlie_comment(self) -> str:
+        pass
+
+    @property
+    @abstractmethod
+    def multiline_comment(self) -> Tuple[str, str]:
         pass
 
     @abstractmethod
