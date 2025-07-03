@@ -1,0 +1,350 @@
+Processing request of type ListToolsRequest
+FIRST ROUND --------
+CHUNK IS  (AIMessageChunk(content=[], additional_kwargs={}, response_metadata={'model_name': 'claude-3-5-sonnet-20241022'}, id='run--bf1a70f6-c78a-4f22-82f7-c8fdd6b18441', usage_metadata={'input_tokens': 458, 'output_tokens': 0, 'total_tokens': 458, 'input_token_details': {'cache_creation': 0, 'cache_read': 0}}), {'thread_id': '1', 'langgraph_step': 1, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': 'I', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--bf1a70f6-c78a-4f22-82f7-c8fdd6b18441'), {'thread_id': '1', 'langgraph_step': 1, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': "'ll", 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--bf1a70f6-c78a-4f22-82f7-c8fdd6b18441'), {'thread_id': '1', 'langgraph_step': 1, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' help', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--bf1a70f6-c78a-4f22-82f7-c8fdd6b18441'), {'thread_id': '1', 'langgraph_step': 1, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' you solve', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--bf1a70f6-c78a-4f22-82f7-c8fdd6b18441'), {'thread_id': '1', 'langgraph_step': 1, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' this', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--bf1a70f6-c78a-4f22-82f7-c8fdd6b18441'), {'thread_id': '1', 'langgraph_step': 1, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' step', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--bf1a70f6-c78a-4f22-82f7-c8fdd6b18441'), {'thread_id': '1', 'langgraph_step': 1, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' by step using', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--bf1a70f6-c78a-4f22-82f7-c8fdd6b18441'), {'thread_id': '1', 'langgraph_step': 1, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' the available', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--bf1a70f6-c78a-4f22-82f7-c8fdd6b18441'), {'thread_id': '1', 'langgraph_step': 1, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' functions:', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--bf1a70f6-c78a-4f22-82f7-c8fdd6b18441'), {'thread_id': '1', 'langgraph_step': 1, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': '\n\n1. First,', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--bf1a70f6-c78a-4f22-82f7-c8fdd6b18441'), {'thread_id': '1', 'langgraph_step': 1, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': " let's add 3", 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--bf1a70f6-c78a-4f22-82f7-c8fdd6b18441'), {'thread_id': '1', 'langgraph_step': 1, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' and 5:', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--bf1a70f6-c78a-4f22-82f7-c8fdd6b18441'), {'thread_id': '1', 'langgraph_step': 1, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'id': 'toolu_0151xaKVCmfAD65ycuB9Mgmq', 'input': {}, 'name': 'add', 'type': 'tool_use', 'index': 1}], additional_kwargs={}, response_metadata={}, id='run--bf1a70f6-c78a-4f22-82f7-c8fdd6b18441', tool_calls=[{'name': 'add', 'args': {}, 'id': 'toolu_0151xaKVCmfAD65ycuB9Mgmq', 'type': 'tool_call'}], tool_call_chunks=[{'name': 'add', 'args': '', 'id': 'toolu_0151xaKVCmfAD65ycuB9Mgmq', 'index': 1, 'type': 'tool_call_chunk'}]), {'thread_id': '1', 'langgraph_step': 1, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'partial_json': '', 'type': 'input_json_delta', 'index': 1}], additional_kwargs={}, response_metadata={}, id='run--bf1a70f6-c78a-4f22-82f7-c8fdd6b18441', tool_calls=[{'name': '', 'args': {}, 'id': None, 'type': 'tool_call'}], tool_call_chunks=[{'name': None, 'args': '', 'id': None, 'index': 1, 'type': 'tool_call_chunk'}]), {'thread_id': '1', 'langgraph_step': 1, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'partial_json': '{"a": ', 'type': 'input_json_delta', 'index': 1}], additional_kwargs={}, response_metadata={}, id='run--bf1a70f6-c78a-4f22-82f7-c8fdd6b18441', tool_calls=[{'name': '', 'args': {}, 'id': None, 'type': 'tool_call'}], tool_call_chunks=[{'name': None, 'args': '{"a": ', 'id': None, 'index': 1, 'type': 'tool_call_chunk'}]), {'thread_id': '1', 'langgraph_step': 1, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'partial_json': '3', 'type': 'input_json_delta', 'index': 1}], additional_kwargs={}, response_metadata={}, id='run--bf1a70f6-c78a-4f22-82f7-c8fdd6b18441', invalid_tool_calls=[{'name': None, 'args': '3', 'id': None, 'error': None, 'type': 'invalid_tool_call'}], tool_call_chunks=[{'name': None, 'args': '3', 'id': None, 'index': 1, 'type': 'tool_call_chunk'}]), {'thread_id': '1', 'langgraph_step': 1, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'partial_json': ', "b": 5}', 'type': 'input_json_delta', 'index': 1}], additional_kwargs={}, response_metadata={}, id='run--bf1a70f6-c78a-4f22-82f7-c8fdd6b18441', invalid_tool_calls=[{'name': None, 'args': ', "b": 5}', 'id': None, 'error': None, 'type': 'invalid_tool_call'}], tool_call_chunks=[{'name': None, 'args': ', "b": 5}', 'id': None, 'index': 1, 'type': 'tool_call_chunk'}]), {'thread_id': '1', 'langgraph_step': 1, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content='', additional_kwargs={}, response_metadata={'stop_reason': 'tool_use', 'stop_sequence': None}, id='run--bf1a70f6-c78a-4f22-82f7-c8fdd6b18441', usage_metadata={'input_tokens': 0, 'output_tokens': 98, 'total_tokens': 98}), {'thread_id': '1', 'langgraph_step': 1, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'checkpoint_ns': 'agent:a245522a-0ad8-3bfc-a6e3-aa9cbf6f5452', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  {'agent': {'messages': [AIMessage(content=[{'text': "I'll help you solve this step by step using the available functions:\n\n1. First, let's add 3 and 5:", 'type': 'text', 'index': 0}, {'id': 'toolu_0151xaKVCmfAD65ycuB9Mgmq', 'input': {}, 'name': 'add', 'type': 'tool_use', 'index': 1, 'partial_json': '{"a": 3, "b": 5}'}], additional_kwargs={}, response_metadata={'model_name': 'claude-3-5-sonnet-20241022', 'stop_reason': 'tool_use', 'stop_sequence': None}, id='run--bf1a70f6-c78a-4f22-82f7-c8fdd6b18441', tool_calls=[{'name': 'add', 'args': {'a': 3, 'b': 5}, 'id': 'toolu_0151xaKVCmfAD65ycuB9Mgmq', 'type': 'tool_call'}], usage_metadata={'input_tokens': 458, 'output_tokens': 98, 'total_tokens': 556, 'input_token_details': {'cache_creation': 0, 'cache_read': 0}})]}}
+
+
+STREAM_MODE is  updates
+Processing request of type CallToolRequest
+CHUNK IS  (ToolMessage(content='8', name='add', id='16649207-b6ed-4891-be78-f466caffe424', tool_call_id='toolu_0151xaKVCmfAD65ycuB9Mgmq'), {'thread_id': '1', 'langgraph_step': 2, 'langgraph_node': 'tools', 'langgraph_triggers': ('__pregel_push',), 'langgraph_path': ('__pregel_push', 0, False), 'langgraph_checkpoint_ns': 'tools:7edf0245-c611-3adc-ce86-6485bda940d8'})
+
+
+STREAM_MODE is  messages
+CHUNK IS  {'tools': {'messages': [ToolMessage(content='8', name='add', id='16649207-b6ed-4891-be78-f466caffe424', tool_call_id='toolu_0151xaKVCmfAD65ycuB9Mgmq')]}}
+
+
+STREAM_MODE is  updates
+CHUNK IS  (AIMessageChunk(content=[], additional_kwargs={}, response_metadata={'model_name': 'claude-3-5-sonnet-20241022'}, id='run--8bb6dab9-b574-461d-bd91-7ccf4f443e2d', usage_metadata={'input_tokens': 568, 'output_tokens': 0, 'total_tokens': 568, 'input_token_details': {'cache_creation': 0, 'cache_read': 0}}), {'thread_id': '1', 'langgraph_step': 3, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': '2', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--8bb6dab9-b574-461d-bd91-7ccf4f443e2d'), {'thread_id': '1', 'langgraph_step': 3, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ". Now, let's", 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--8bb6dab9-b574-461d-bd91-7ccf4f443e2d'), {'thread_id': '1', 'langgraph_step': 3, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' multiply the result (', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--8bb6dab9-b574-461d-bd91-7ccf4f443e2d'), {'thread_id': '1', 'langgraph_step': 3, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': '8) by 12', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--8bb6dab9-b574-461d-bd91-7ccf4f443e2d'), {'thread_id': '1', 'langgraph_step': 3, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ':', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--8bb6dab9-b574-461d-bd91-7ccf4f443e2d'), {'thread_id': '1', 'langgraph_step': 3, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'id': 'toolu_01WCosigmYpC7GsHFHjLUP9u', 'input': {}, 'name': 'multiply', 'type': 'tool_use', 'index': 1}], additional_kwargs={}, response_metadata={}, id='run--8bb6dab9-b574-461d-bd91-7ccf4f443e2d', tool_calls=[{'name': 'multiply', 'args': {}, 'id': 'toolu_01WCosigmYpC7GsHFHjLUP9u', 'type': 'tool_call'}], tool_call_chunks=[{'name': 'multiply', 'args': '', 'id': 'toolu_01WCosigmYpC7GsHFHjLUP9u', 'index': 1, 'type': 'tool_call_chunk'}]), {'thread_id': '1', 'langgraph_step': 3, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'partial_json': '', 'type': 'input_json_delta', 'index': 1}], additional_kwargs={}, response_metadata={}, id='run--8bb6dab9-b574-461d-bd91-7ccf4f443e2d', tool_calls=[{'name': '', 'args': {}, 'id': None, 'type': 'tool_call'}], tool_call_chunks=[{'name': None, 'args': '', 'id': None, 'index': 1, 'type': 'tool_call_chunk'}]), {'thread_id': '1', 'langgraph_step': 3, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'partial_json': '{"a":', 'type': 'input_json_delta', 'index': 1}], additional_kwargs={}, response_metadata={}, id='run--8bb6dab9-b574-461d-bd91-7ccf4f443e2d', tool_calls=[{'name': '', 'args': {}, 'id': None, 'type': 'tool_call'}], tool_call_chunks=[{'name': None, 'args': '{"a":', 'id': None, 'index': 1, 'type': 'tool_call_chunk'}]), {'thread_id': '1', 'langgraph_step': 3, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'partial_json': ' 8', 'type': 'input_json_delta', 'index': 1}], additional_kwargs={}, response_metadata={}, id='run--8bb6dab9-b574-461d-bd91-7ccf4f443e2d', invalid_tool_calls=[{'name': None, 'args': ' 8', 'id': None, 'error': None, 'type': 'invalid_tool_call'}], tool_call_chunks=[{'name': None, 'args': ' 8', 'id': None, 'index': 1, 'type': 'tool_call_chunk'}]), {'thread_id': '1', 'langgraph_step': 3, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'partial_json': ', "b"', 'type': 'input_json_delta', 'index': 1}], additional_kwargs={}, response_metadata={}, id='run--8bb6dab9-b574-461d-bd91-7ccf4f443e2d', invalid_tool_calls=[{'name': None, 'args': ', "b"', 'id': None, 'error': None, 'type': 'invalid_tool_call'}], tool_call_chunks=[{'name': None, 'args': ', "b"', 'id': None, 'index': 1, 'type': 'tool_call_chunk'}]), {'thread_id': '1', 'langgraph_step': 3, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'partial_json': ': 12}', 'type': 'input_json_delta', 'index': 1}], additional_kwargs={}, response_metadata={}, id='run--8bb6dab9-b574-461d-bd91-7ccf4f443e2d', invalid_tool_calls=[{'name': None, 'args': ': 12}', 'id': None, 'error': None, 'type': 'invalid_tool_call'}], tool_call_chunks=[{'name': None, 'args': ': 12}', 'id': None, 'index': 1, 'type': 'tool_call_chunk'}]), {'thread_id': '1', 'langgraph_step': 3, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content='', additional_kwargs={}, response_metadata={'stop_reason': 'tool_use', 'stop_sequence': None}, id='run--8bb6dab9-b574-461d-bd91-7ccf4f443e2d', usage_metadata={'input_tokens': 0, 'output_tokens': 86, 'total_tokens': 86}), {'thread_id': '1', 'langgraph_step': 3, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'checkpoint_ns': 'agent:933880b3-8e90-fac9-4aeb-291d2ee58e4b', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  {'agent': {'messages': [AIMessage(content=[{'text': "2. Now, let's multiply the result (8) by 12:", 'type': 'text', 'index': 0}, {'id': 'toolu_01WCosigmYpC7GsHFHjLUP9u', 'input': {}, 'name': 'multiply', 'type': 'tool_use', 'index': 1, 'partial_json': '{"a": 8, "b": 12}'}], additional_kwargs={}, response_metadata={'model_name': 'claude-3-5-sonnet-20241022', 'stop_reason': 'tool_use', 'stop_sequence': None}, id='run--8bb6dab9-b574-461d-bd91-7ccf4f443e2d', tool_calls=[{'name': 'multiply', 'args': {'a': 8, 'b': 12}, 'id': 'toolu_01WCosigmYpC7GsHFHjLUP9u', 'type': 'tool_call'}], usage_metadata={'input_tokens': 568, 'output_tokens': 86, 'total_tokens': 654, 'input_token_details': {'cache_creation': 0, 'cache_read': 0}})]}}
+
+
+STREAM_MODE is  updates
+Processing request of type CallToolRequest
+CHUNK IS  (ToolMessage(content='96', name='multiply', id='58264330-f068-4a1f-83f0-c368a5f962fb', tool_call_id='toolu_01WCosigmYpC7GsHFHjLUP9u'), {'thread_id': '1', 'langgraph_step': 4, 'langgraph_node': 'tools', 'langgraph_triggers': ('__pregel_push',), 'langgraph_path': ('__pregel_push', 0, False), 'langgraph_checkpoint_ns': 'tools:35e08d88-787f-7623-b7e8-c3c61767e7f6'})
+
+
+STREAM_MODE is  messages
+CHUNK IS  {'tools': {'messages': [ToolMessage(content='96', name='multiply', id='58264330-f068-4a1f-83f0-c368a5f962fb', tool_call_id='toolu_01WCosigmYpC7GsHFHjLUP9u')]}}
+
+
+STREAM_MODE is  updates
+CHUNK IS  (AIMessageChunk(content=[], additional_kwargs={}, response_metadata={'model_name': 'claude-3-5-sonnet-20241022'}, id='run--bf0f4ad9-be45-49ab-a627-d118f97955d2', usage_metadata={'input_tokens': 666, 'output_tokens': 0, 'total_tokens': 666, 'input_token_details': {'cache_creation': 0, 'cache_read': 0}}), {'thread_id': '1', 'langgraph_step': 5, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:d55b3b1f-67a2-0ca0-dc05-f4b6a1a47166', 'checkpoint_ns': 'agent:d55b3b1f-67a2-0ca0-dc05-f4b6a1a47166', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': 'The', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--bf0f4ad9-be45-49ab-a627-d118f97955d2'), {'thread_id': '1', 'langgraph_step': 5, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:d55b3b1f-67a2-0ca0-dc05-f4b6a1a47166', 'checkpoint_ns': 'agent:d55b3b1f-67a2-0ca0-dc05-f4b6a1a47166', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' result', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--bf0f4ad9-be45-49ab-a627-d118f97955d2'), {'thread_id': '1', 'langgraph_step': 5, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:d55b3b1f-67a2-0ca0-dc05-f4b6a1a47166', 'checkpoint_ns': 'agent:d55b3b1f-67a2-0ca0-dc05-f4b6a1a47166', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' of (3 +', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--bf0f4ad9-be45-49ab-a627-d118f97955d2'), {'thread_id': '1', 'langgraph_step': 5, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:d55b3b1f-67a2-0ca0-dc05-f4b6a1a47166', 'checkpoint_ns': 'agent:d55b3b1f-67a2-0ca0-dc05-f4b6a1a47166', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' 5) ×', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--bf0f4ad9-be45-49ab-a627-d118f97955d2'), {'thread_id': '1', 'langgraph_step': 5, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:d55b3b1f-67a2-0ca0-dc05-f4b6a1a47166', 'checkpoint_ns': 'agent:d55b3b1f-67a2-0ca0-dc05-f4b6a1a47166', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' 12 =', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--bf0f4ad9-be45-49ab-a627-d118f97955d2'), {'thread_id': '1', 'langgraph_step': 5, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:d55b3b1f-67a2-0ca0-dc05-f4b6a1a47166', 'checkpoint_ns': 'agent:d55b3b1f-67a2-0ca0-dc05-f4b6a1a47166', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' 96', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--bf0f4ad9-be45-49ab-a627-d118f97955d2'), {'thread_id': '1', 'langgraph_step': 5, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:d55b3b1f-67a2-0ca0-dc05-f4b6a1a47166', 'checkpoint_ns': 'agent:d55b3b1f-67a2-0ca0-dc05-f4b6a1a47166', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content='', additional_kwargs={}, response_metadata={'stop_reason': 'end_turn', 'stop_sequence': None}, id='run--bf0f4ad9-be45-49ab-a627-d118f97955d2', usage_metadata={'input_tokens': 0, 'output_tokens': 21, 'total_tokens': 21}), {'thread_id': '1', 'langgraph_step': 5, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:d55b3b1f-67a2-0ca0-dc05-f4b6a1a47166', 'checkpoint_ns': 'agent:d55b3b1f-67a2-0ca0-dc05-f4b6a1a47166', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  {'agent': {'messages': [AIMessage(content=[{'text': 'The result of (3 + 5) × 12 = 96', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={'model_name': 'claude-3-5-sonnet-20241022', 'stop_reason': 'end_turn', 'stop_sequence': None}, id='run--bf0f4ad9-be45-49ab-a627-d118f97955d2', usage_metadata={'input_tokens': 666, 'output_tokens': 21, 'total_tokens': 687, 'input_token_details': {'cache_creation': 0, 'cache_read': 0}})]}}
+
+
+STREAM_MODE is  updates
+SECOND ROUND --------
+CHUNK IS  (AIMessageChunk(content=[], additional_kwargs={}, response_metadata={'model_name': 'claude-3-5-sonnet-20241022'}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55', usage_metadata={'input_tokens': 698, 'output_tokens': 0, 'total_tokens': 698, 'input_token_details': {'cache_creation': 0, 'cache_read': 0}}), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': 'I notice', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': " you're asking about a", 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' "last round quest an', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': 'd answer"', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' but', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': " I don't see", 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' any available', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' functions', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' that can', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' help retrieve', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' previous conversation', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' history or quest', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' information. The', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' only', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' tools', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' I have access to are', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' basic', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' arithmetic functions:', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': '\n-', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' add:', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' for adding', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' two numbers\n- multiply', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ': for multiplying two', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': " numbers\n\nIf you'", 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': 'd like to know', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' about a specific quest or', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' previous', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' conversation, please', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' provide more details', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': '.', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' Alternatively, I', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' can help you with any', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' arithmetic', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' calculations using', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' the available', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content=[{'text': ' functions.', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55'), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  (AIMessageChunk(content='', additional_kwargs={}, response_metadata={'stop_reason': 'end_turn', 'stop_sequence': None}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55', usage_metadata={'input_tokens': 0, 'output_tokens': 101, 'total_tokens': 101}), {'thread_id': '1', 'langgraph_step': 8, 'langgraph_node': 'agent', 'langgraph_triggers': ('branch:to:agent',), 'langgraph_path': ('__pregel_pull', 'agent'), 'langgraph_checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'checkpoint_ns': 'agent:42b7b5f4-322a-5d63-a586-61de65232e26', 'ls_provider': 'anthropic', 'ls_model_name': 'claude-3-5-sonnet-latest', 'ls_model_type': 'chat', 'ls_temperature': None, 'ls_max_tokens': 1024})
+
+
+STREAM_MODE is  messages
+CHUNK IS  {'agent': {'messages': [AIMessage(content=[{'text': 'I notice you\'re asking about a "last round quest and answer" but I don\'t see any available functions that can help retrieve previous conversation history or quest information. The only tools I have access to are basic arithmetic functions:\n- add: for adding two numbers\n- multiply: for multiplying two numbers\n\nIf you\'d like to know about a specific quest or previous conversation, please provide more details. Alternatively, I can help you with any arithmetic calculations using the available functions.', 'type': 'text', 'index': 0}], additional_kwargs={}, response_metadata={'model_name': 'claude-3-5-sonnet-20241022', 'stop_reason': 'end_turn', 'stop_sequence': None}, id='run--f379e72e-4ab3-46cc-8538-946feead4d55', usage_metadata={'input_tokens': 698, 'output_tokens': 101, 'total_tokens': 799, 'input_token_details': {'cache_creation': 0, 'cache_read': 0}})]}}
+
+
+STREAM_MODE is  updates
+None
