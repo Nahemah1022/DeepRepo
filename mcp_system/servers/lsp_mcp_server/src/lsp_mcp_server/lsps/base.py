@@ -25,7 +25,7 @@ class LangServer(ABC):
 
         self._id = 0
         self.converter = converters.get_converter()
-        root_uri = Path(root_uri).resolve().as_uri() if not root_uri.startswith("file://") else root_uri
+        self.root_uri = Path(root_uri).resolve().as_uri() if not root_uri.startswith("file://") else root_uri
 
         self.request(
             types.InitializeRequest,
@@ -105,7 +105,7 @@ class LangServer(ABC):
         file_path = Path(unquote(parsed.path))
         return file_path.read_text(encoding="utf-8")
 
-    def show_definition(self, line: int, character: int, keyword: str, path: str) -> types.Location:
+    def show_definition(self, line: int, character: int, keyword: str, path: str):
         """
         Finds the definition of the given keyword in the specified file by querying the LSP server.
 
@@ -124,7 +124,6 @@ class LangServer(ABC):
         """
         uri = Path(path).resolve().as_uri() if not path.startswith("file://") else path
         self._open(uri)
-        print(f"[Locator] {self.locator(line, character, keyword, path)}")
         result = self.request(
             types.TextDocumentDefinitionRequest,
             params=types.DefinitionParams(

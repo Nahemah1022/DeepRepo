@@ -1,34 +1,38 @@
-from typing import Dict, List, Union
+from typing import Dict, Union
 from pydantic import BaseModel
 
 class Position(BaseModel):
     line: int
     character: int
 
+    def index(self):
+        return f"{self.line}:{self.character}"
+
 class Location(BaseModel):
     uri: str
     position: Position
+
+    def index(self) -> str:
+        return self.position.index()
 
 class Range(BaseModel):
     start: Position
     end: Position
 
-class Function(BaseModel):
+class Function(Location):
     name: str
-    location: Location
     range: Range
 
-class Variable(BaseModel):
+class Variable(Location):
     name: str
-    location: Location
 
 class Symbol(BaseModel):
-    position: Position
-    definition: Union[Function, Variable]
+    pos: Position
+    decl: Location
     context: str
 
 class DeepGraph(BaseModel):
     symbols: Dict[str, Symbol] = {}
 
     def add_symbol(self, sym: Symbol):
-        self.symbols[sym.definition.name] = sym
+        self.symbols[sym.decl.index()] = sym
