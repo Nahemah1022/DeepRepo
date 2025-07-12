@@ -27,6 +27,7 @@ class Variable(Location):
     name: str
 
 class Symbol(BaseModel):
+    name: str
     pos: Position
     decl: Location
     context: str
