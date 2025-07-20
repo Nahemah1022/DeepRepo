@@ -1,8 +1,10 @@
 from pathlib import Path
 import urllib.parse
+import keyword
+import typing
 
 from lsprotocol.types import SymbolKind, Position
-from servers.base import LangServer
+from servers.lsp.servers.base import LangServer
 
 class PythonLangServer(LangServer):
     def __init__(self, root_uri: str):
@@ -11,6 +13,41 @@ class PythonLangServer(LangServer):
     @property
     def language_id(self) -> str:
         return "python"
+
+    @property
+    def separators(self) -> typing.Set[str]:
+        return set(' \n\t.,!?;(){}[]<>:\'#*/=@')
+
+    @property
+    def keywords(self) -> typing.Set[str]:
+        reserved_keywords = set(keyword.kwlist)
+        custom_keywords = {"self", "setter", "getter", "+", "-", "def", "class"}
+        built_in_types = {"str", "bool", "float", "int", "complex", "tuple", "dict"}
+        typing_keywords = set(typing.__dict__.keys())
+        built_in_keywords = set(dir(__builtins__))
+        return reserved_keywords | custom_keywords | built_in_types | typing_keywords | built_in_keywords
+
+    @property
+    def inlie_comment(self) -> str:
+        return "#"
+
+    @property
+    def multiline_comment(self) -> typing.Tuple[str, str]:
+        return ('"""', '"""')
+
+    @property
+    def string_delimiters(self) -> typing.List[typing.Tuple[str, str]]:
+        return [('"', '"'), ("'", "'")]
+
+    def is_literal(self, word: str) -> bool:
+        """Check if the word is a literal value (like a number, string, etc.)."""
+        try:
+            eval_word = eval(word)
+            if isinstance(eval_word, (int, float, str, bool, complex, type(None))):
+                return True
+        except:
+            pass
+        return False
 
     def locator(self, line: int, character: int, keyword: str, path: str) -> Position:
         if path.startswith("file://"):

@@ -6,7 +6,7 @@ import select
 from abc import ABC, abstractmethod
 from pathlib import Path
 from urllib.parse import urlparse, unquote
-from typing import Union, Any
+from typing import Union, Any, Set, Tuple
 
 from lsprotocol import types, converters
 
@@ -25,12 +25,17 @@ class LangServer(ABC):
 
         self._id = 0
         self.converter = converters.get_converter()
+        self.root_uri = Path(root_uri).resolve().as_uri() if not root_uri.startswith("file://") else root_uri
+
         self.request(
             types.InitializeRequest,
             params=types.InitializeParams(
                 process_id=None,
                 root_uri=root_uri,
                 capabilities=types.ClientCapabilities(),
+                workspace_folders=[
+                    types.WorkspaceFolder(uri=root_uri, name=Path(root_uri).name)
+                ],
             )
         )
         self.notify(types.InitializedNotification(params=types.InitializedParams()))
@@ -100,7 +105,7 @@ class LangServer(ABC):
         file_path = Path(unquote(parsed.path))
         return file_path.read_text(encoding="utf-8")
 
-    def show_definition(self, line: int, character: int, keyword: str, path: str) -> types.Location:
+    def show_definition(self, line: int, character: int, keyword: str, path: str):
         """
         Finds the definition of the given keyword in the specified file by querying the LSP server.
 
@@ -119,7 +124,6 @@ class LangServer(ABC):
         """
         uri = Path(path).resolve().as_uri() if not path.startswith("file://") else path
         self._open(uri)
-
         result = self.request(
             types.TextDocumentDefinitionRequest,
             params=types.DefinitionParams(
@@ -240,6 +244,33 @@ class LangServer(ABC):
     @abstractmethod
     def language_id(self) -> str:
         """LSP language ID, e.g., 'python', 'cpp', etc."""
+        pass
+
+    @property
+    @abstractmethod
+    def separators(self) -> Set[str]:
+        pass
+
+    @property
+    @abstractmethod
+    def keywords(self) -> Set[str]:
+        # Define any string keywords you want to exclude from scanning
+        pass
+
+    @property
+    @abstractmethod
+    def inlie_comment(self) -> str:
+        pass
+
+    @property
+    @abstractmethod
+    def multiline_comment(self) -> Tuple[str, str]:
+        pass
+
+    @property
+    @abstractmethod
+    def string_delimiters(self) -> list[Tuple[str, str]]:
+        """Return the string delimiters for the language, e.g., [('"', '"'), ("'", "'")] for Python."""
         pass
 
     @abstractmethod

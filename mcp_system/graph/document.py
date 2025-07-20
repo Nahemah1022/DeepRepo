@@ -1,6 +1,6 @@
-from lsp_mcp_server.code_block import CodeBlock
-from lsp_mcp_server.graph import Position, Variable, Function
-from lsp_mcp_server.lsps.base import LangServer
+from graph.code_block import CodeBlock
+from graph.knowledge_graph import Position, Variable, Function
+from servers.lsp.servers.base import LangServer
 from typing import Union
 from lsprotocol.types import SymbolKind
 

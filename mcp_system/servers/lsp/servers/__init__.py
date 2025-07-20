@@ -1,1 +1,1 @@
-from servers.python import PythonLangServer
+from servers.lsp.servers.python import PythonLangServer

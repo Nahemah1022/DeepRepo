@@ -1,6 +1,6 @@
 from typing import List, Iterator
-from lsp_mcp_server.graph import Symbol, Position, Location
-from lsp_mcp_server.lsps.base import LangServer
+from graph.knowledge_graph import Symbol, Position, Location
+from servers.lsp.servers.base import LangServer
 
 class CodeBlock:
     def __init__(self, lines: List[str], lsp: LangServer, uri: str, base_line_number: int):

@@ -1,11 +1,10 @@
 from typing import Dict, Union, List, Optional, TYPE_CHECKING
 from dataclasses import dataclass, field
 import json
-import os
 
 if TYPE_CHECKING:
-    from lsp_mcp_server.code_block import CodeBlock
-    from lsp_mcp_server.document import Document
+    from graph.code_block import CodeBlock
+    from graph.document import Document
 
 # Positional Information
 @dataclass

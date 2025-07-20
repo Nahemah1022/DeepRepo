@@ -1,6 +1,6 @@
-from lsp_mcp_server.graph import KnowledgeGraph, Symbol, Function, Index
-from lsp_mcp_server.document import Document
-from lsp_mcp_server.lsps.python import PythonLangServer
+from graph.knowledge_graph import KnowledgeGraph, Symbol, Function, Index
+from graph.document import Document
+from servers.lsp.servers import PythonLangServer
 
 class Scanner:
     def __init__(self, lsp):
