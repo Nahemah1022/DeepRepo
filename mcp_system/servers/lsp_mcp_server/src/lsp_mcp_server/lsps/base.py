@@ -267,6 +267,12 @@ class LangServer(ABC):
     def multiline_comment(self) -> Tuple[str, str]:
         pass
 
+    @property
+    @abstractmethod
+    def string_delimiters(self) -> list[Tuple[str, str]]:
+        """Return the string delimiters for the language, e.g., [('"', '"'), ("'", "'")] for Python."""
+        pass
+
     @abstractmethod
     def locator(self, line: int, character: int, keyword: str, path: str) -> types.Position:
         """

@@ -35,6 +35,10 @@ class PythonLangServer(LangServer):
     def multiline_comment(self) -> typing.Tuple[str, str]:
         return ('"""', '"""')
 
+    @property
+    def string_delimiters(self) -> typing.List[typing.Tuple[str, str]]:
+        return [('"', '"'), ("'", "'")]
+
     def is_literal(self, word: str) -> bool:
         """Check if the word is a literal value (like a number, string, etc.)."""
         try:
