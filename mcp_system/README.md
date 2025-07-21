@@ -1,3 +1,10 @@
+## Generate Knowledge Graph
+
+```
+$ uv sync
+$ uv run -m graph.scanner
+```
+
 ## Run MCP Server
 
 ```

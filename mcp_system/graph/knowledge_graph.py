@@ -44,7 +44,7 @@ class Function(Location):
     dependencies: List[Index] = field(default_factory=list)
 
     def add_dependency(self, index: Index):
-        if not index:
+        if not index or index in self.dependencies:
             return
         self.dependencies.append(index)
 

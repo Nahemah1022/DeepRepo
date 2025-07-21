@@ -30,6 +30,15 @@ class Document(dict[str, Union[Variable, Function]]):
                         position=Position(line=lsp_sym.location.range.start.line, character=lsp_sym.location.range.start.character + 4), # shift over the `def ` keyword
                     )
                     self[definition.key()] = definition
+                # case SymbolKind.Class:
+                #     code_block = self.get_code_block(lsp_sym.location.uri, lsp_sym.location.range.start.line, lsp_sym.location.range.end.line)
+                #     definition = Function(
+                #         name=lsp_sym.name,
+                #         code_block=code_block,
+                #         uri=lsp_sym.location.uri,
+                #         position=Position(line=lsp_sym.location.range.start.line, character=lsp_sym.location.range.start.character + 6), # shift over the `class ` keyword
+                #     )
+                #     self[definition.key()] = definition
     
     def get_code_block(self, uri: str, start_line: int, end_line: int) -> CodeBlock:
         if uri.startswith("file://"):

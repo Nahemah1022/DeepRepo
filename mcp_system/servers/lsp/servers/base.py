@@ -6,7 +6,7 @@ import select
 from abc import ABC, abstractmethod
 from pathlib import Path
 from urllib.parse import urlparse, unquote
-from typing import Union, Any, Set, Tuple
+from typing import Union, Any, Set, Tuple, Optional
 
 from lsprotocol import types, converters
 
@@ -18,7 +18,7 @@ class LangServer(ABC):
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
-            text=True,
+            text=False,  # Use binary mode for consistent encoding
             bufsize=0,
         )
         threading.Thread(target=self._read_stderr, daemon=True).start()
@@ -27,66 +27,167 @@ class LangServer(ABC):
         self.converter = converters.get_converter()
         self.root_uri = Path(root_uri).resolve().as_uri() if not root_uri.startswith("file://") else root_uri
 
+        # Initialize the language server
         self.request(
             types.InitializeRequest,
             params=types.InitializeParams(
                 process_id=None,
                 root_uri=root_uri,
-                capabilities=types.ClientCapabilities(),
+                capabilities=types.ClientCapabilities(
+                    text_document=types.TextDocumentClientCapabilities(
+                        # Explicitly disable diagnostics by setting publish_diagnostics to None
+                        publish_diagnostics=None
+                    )
+                ),
                 workspace_folders=[
                     types.WorkspaceFolder(uri=root_uri, name=Path(root_uri).name)
                 ],
             )
         )
         self.notify(types.InitializedNotification(params=types.InitializedParams()))
+        
+        # Try to disable diagnostics by sending a configuration change
+        try:
+            self.notify(types.WorkspaceDidChangeConfigurationNotification(
+                params=types.DidChangeConfigurationParams(
+                    settings={
+                        "python": {
+                            "analysis": {
+                                "diagnosticMode": "off",
+                                "autoImportCompletions": False,
+                                "typeCheckingMode": "off"
+                            }
+                        },
+                        "pyright": {
+                            "disableLanguageService": True
+                        }
+                    }
+                )
+            ))
+        except Exception as e:
+            # If this fails, it's not critical - we'll just filter the messages
+            print(f"Note: Could not disable diagnostics: {e}")
 
     def _read_stderr(self):
-        for line in self.proc.stderr:
-            print("[stderr]", line.strip())
+        """Read stderr output from the language server process"""
+        if self.proc and self.proc.stderr:
+            for line in self.proc.stderr:
+                print("[stderr]", line.strip())
 
     def _send(self, msg):
-        if not self.proc:
-            raise RuntimeError("LSP process not started.")
+        """Send a message to the language server via stdio"""
+        if not self.proc or not self.proc.stdin:
+            raise RuntimeError("LSP process not started or stdin not available.")
+        
         payload = self.converter.unstructure(msg)
         body = json.dumps(payload)
+        
+        # LSP over stdio uses Content-Length header followed by the JSON payload
         header = f"Content-Length: {len(body)}\r\n\r\n"
-        self.proc.stdin.write(header + body)
-        self.proc.stdin.flush()
+        message = header + body
+        
+        try:
+            self.proc.stdin.write(message.encode('utf-8'))
+            self.proc.stdin.flush()
+        except (IOError, OSError) as e:
+            raise RuntimeError(f"Failed to send message to LSP server: {e}")
 
-    def _wait_for(self, target_id, timeout=3.0):
-        start = time.time()
-        if not self.proc:
-            raise RuntimeError("LSP process not started.")
-
-        while time.time() - start < timeout:
-            ready, _, _ = select.select([self.proc.stdout], [], [], 0.1)
-            if not ready:
-                continue
+    def _read_message(self) -> Optional[dict]:
+        """Read a complete message from the language server with proper LSP framing"""
+        if not self.proc or not self.proc.stdout:
+            return None
+        
+        try:
+            # Read headers - stop at the first empty line
             headers = {}
             while True:
                 line = self.proc.stdout.readline()
-                if line in ('\r\n', '\n', ''):
+                if not line:
+                    return None
+                line = line.rstrip(b'\r\n')
+                if line == b'':
                     break
-                if ":" in line:
-                    k, v = line.split(":", 1)
-                    headers[k.strip()] = v.strip()
+                if b':' in line:
+                    k, v = line.split(b':', 1)
+                    headers[k.strip().decode('utf-8')] = v.strip().decode('utf-8')
+            
+            # Read body with exact content length
             content_length = int(headers.get("Content-Length", 0))
             if content_length == 0:
-                continue
+                return None
+            
+            # Read exactly the specified number of bytes
             body = self.proc.stdout.read(content_length)
-            message = json.loads(body)
-            if message.get("id") == target_id:
-                return message
+            if len(body) != content_length:
+                print(f"Warning: Expected {content_length} bytes but got {len(body)}, body: {body}")
+                return None
+            
+            # Parse JSON - this should now be a complete, valid JSON object
+            return json.loads(body.decode('utf-8'))
+        except (json.JSONDecodeError, ValueError, IOError, OSError) as e:
+            print(f"Error reading message from LSP server: {e}")
+            return None
+
+    def _wait_for(self, target_id, timeout=5.0):
+        """Wait for a specific response from the language server with improved timeout"""
+        start = time.time()
+        
+        while time.time() - start < timeout:
+            try:
+                # Use select to check if data is available
+                if not self.proc or not self.proc.stdout:
+                    break
+                ready, _, _ = select.select([self.proc.stdout], [], [], 0.1)
+                if not ready:
+                    continue
+                
+                message = self._read_message()
+                if not message:
+                    continue
+                
+                # Skip all diagnostic-related notifications
+                method = message.get("method", "")
+                if method in [
+                    "textDocument/publishDiagnostics",
+                    "textDocument/publishDiagnostics/relatedInformation",
+                    "textDocument/publishDiagnostics/tagSupport"
+                ]:
+                    # print(f"Skipping diagnostic message: {method}")
+                    continue
+                
+                # Return the message if it matches our target ID
+                if message.get("id") == target_id:
+                    return message
+            except (IOError, OSError) as e:
+                print(f"Error waiting for LSP response: {e}")
+                break
+        
         return None
 
     def request(self, cls: types.REQUESTS, params) -> types.RESPONSES:
+        """Send a request to the language server and wait for response"""
         self._id += 1
         msg = cls(params=params, id=self._id)
         self._send(msg)
         return self._wait_for(self._id)
 
     def notify(self, msg: types.NOTIFICATIONS):
+        """Send a notification to the language server"""
         return self._send(msg)
+
+    def close(self):
+        """Close the connection and terminate the language server"""
+        if self.proc:
+            self.proc.terminate()
+            try:
+                self.proc.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                self.proc.kill()
+            self.proc = None
+
+    def __del__(self):
+        """Cleanup when the object is destroyed"""
+        self.close()
 
     def _open(self, uri: str):
         self.notify(types.TextDocumentDidOpenNotification(
@@ -131,6 +232,8 @@ class LangServer(ABC):
                 position=self.locator(line, character, keyword, path),
             )
         )
+        if result is None:
+            return None
         return self.converter.structure(result, types.TextDocumentTypeDefinitionResponse).result
 
     def hover(self, line: int, character: int, keyword: str, path: str) -> types.Hover:

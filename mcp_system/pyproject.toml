@@ -8,4 +8,5 @@ dependencies = [
     "click>=8.2.1",
     "fastmcp>=2.10.2",
     "lsprotocol==2023.0.1",
+    "pyright>=1.1.403",
 ]
