@@ -78,7 +78,7 @@ class DatabaseManager:
 
     def list_all_table_names(self) -> list:
         """Returns a list of all table names discovered in the database schema."""
-        return list(self._Base.classes.keys())
+        return list(self._base.classes.keys())
 
     def get_table_class(self, table_name: str):
         """

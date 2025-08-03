@@ -18,13 +18,8 @@ def to_raw_string(s: str) -> str:
   return raw_string
 
 
-st = """def create_db_handle(connect_string):
-    logging.info("using bytedmysql")
-    from bytedmysql import sqlalchemy_init
-    sqlalchemy_init()
-    engine = create_engine(connect_string, pool_recycle=180)
-    base_cls = automap_base()
-    base_cls.prepare(engine, reflect=True)
-    return DBHandle(engine, base_cls)"""
+st = """class DBRole:
+    WRITE = \"write\"
+    READ = \"read\""""
 
 print(to_raw_string(st))

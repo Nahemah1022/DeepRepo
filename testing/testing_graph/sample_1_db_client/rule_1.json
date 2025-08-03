@@ -1,0 +1,90 @@
+[
+  {
+    "index": 0, 
+    "type": "Class",
+    "name": "DBRole",
+    "uri": "/Users/bytedance/Bowen_Yang_SWE/PRIVATE_WORKS/DeepRepo/testing/sample_projects/sample_1_db_client/mysql/main_db.py",
+    "code_content": "class DBRole:\n    \"\"\"Defines constants for database roles to ensure type safety.\"\"\"\n    WRITE = \"write\"\n    READ = \"read\"",
+    "dependencies_count": 0,
+    "dependencies": []
+  },
+  {
+    "index": 1, 
+    "type": "Class",
+    "name": "DBHandle",
+    "uri": "/Users/bytedance/Bowen_Yang_SWE/PRIVATE_WORKS/DeepRepo/testing/sample_projects/sample_1_db_client/mysql/main_db.py",
+    "code_content": "class DBHandle:\n    \"\"\"A handle that holds the configured database engines and reflected base class.\"\"\"\n    def __init__(self, write_engine, base_cls, read_engine=None):\n        self.write_engine = write_engine\n        # If no read engine is provided, read operations will use the write engine.\n        self.read_engine = read_engine or write_engine\n        self.base_cls = base_cls\n        logging.info(\"DBHandle created. Write Engine: %s, Read Engine: %s\", write_engine.url, self.read_engine.url)",
+    "dependencies_count": 1,
+    "dependencies": [2]
+  },
+  { 
+    "index":2,
+    "type": "Function",
+    "name": "__init__",
+    "uri": "/Users/bytedance/Bowen_Yang_SWE/PRIVATE_WORKS/DeepRepo/testing/sample_projects/sample_1_db_client/mysql/main_db.py",
+    "code_content": "def __init__(self, write_engine, base_cls, read_engine=None):\n        self.write_engine = write_engine\n        # If no read engine is provided, read operations will use the write engine.\n        self.read_engine = read_engine or write_engine\n        self.base_cls = base_cls\n        logging.info(\"DBHandle created. Write Engine: %s, Read Engine: %s\", write_engine.url, self.read_engine.url)",
+    "dependencies_count": 0,
+    "dependencies": []
+  },
+  {
+    "index": 3,
+    "type": "Function",
+    "name": "create_database",
+    "uri": "/Users/bytedance/Bowen_Yang_SWE/PRIVATE_WORKS/DeepRepo/testing/sample_projects/sample_1_db_client/mysql/main_db.py",
+    "code_content": "def create_database(write_url: str, read_url: str = None, **engine_kwargs) -> DBHandle:\n    \"\"\"\n    Creates database engines and returns a handle.\n\n    This function uses SQLAlchemy's automap feature to reflect the database schema.\n    To connect to MySQL, you might need to install a driver like PyMySQL:\n    'pip install pymysql'\n    And format your URL like: 'mysql+pymysql://user:pass@host/db'\n\n    Args:\n        write_url (str): The connection string for the primary (write) database.\n        read_url (str, optional): The connection string for the read replica. Defaults to None.\n        **engine_kwargs: Additional arguments for the SQLAlchemy create_engine function,\n                         e.g., pool_recycle=3600.\n\n    Returns:\n        DBHandle: A handle containing the database engines and mapped base.\n    \"\"\"\n    # Default pool_recycle to 1800 seconds (30 minutes) if not specified\n    engine_kwargs.setdefault('pool_recycle', 1800)\n\n    # The write engine is the source of truth for schema reflection\n    write_engine = create_engine(write_url, **engine_kwargs)\n    \n    read_engine = None\n    if read_url:\n        read_engine = create_engine(read_url, **engine_kwargs)\n\n    # Reflect the database schema from the write engine\n    Base = automap_base()\n    Base.prepare(autoload_with=write_engine, reflect=True)\n\n    return DBHandle(write_engine, Base, read_engine)",
+    "dependencies_count": 0,
+    "dependencies": []
+  },
+  {
+    "index": 4,
+    "type": "Class",
+    "name": "DatabaseManager",
+    "uri": "/Users/bytedance/Bowen_Yang_SWE/PRIVATE_WORKS/DeepRepo/testing/sample_projects/sample_1_db_client/mysql/main_db.py",
+    "code_content": "class DatabaseManager:\n    \"\"\"\n    Provides a high-level API for interacting with the database.\n    Manages sessions and executes SQL operations.\n    \"\"\"\n    def __init__(self, db_handle: DBHandle):\n        self._db_handle = db_handle\n        self._write_engine = db_handle.write_engine\n        self._read_engine = db_handle.read_engine\n        self._base = db_handle.base_cls\n\n    def list_all_table_names(self) -> list:\n        \"\"\"Returns a list of all table names discovered in the database schema.\"\"\"\n        return list(self._Base.classes.keys())\n\n    def get_table_class(self, table_name: str):\n        \"\"\"\n        Returns the mapped class for a given table name.\n\n        Args:\n            table_name (str): The name of the table.\n\n        Returns:\n            The SQLAlchemy mapped class, or None if not found.\n        \"\"\"\n        return self._base.classes.get(table_name)\n\n    @contextmanager\n    def session_scope(self, role: str = DBRole.WRITE) -> Session:\n        \"\"\"\n        Provides a transactional scope around a series of operations.\n        This context manager handles session creation, commit, rollback, and closing.\n\n        Args:\n            role (str): The database role, either DBRole.WRITE or DBRole.READ.\n\n        Yields:\n            Session: The SQLAlchemy session object.\n        \"\"\"\n        if role == DBRole.WRITE:\n            engine = self._write_engine\n        elif role == DBRole.READ:\n            engine = self._read_engine\n        else:\n            raise ValueError(f\"Unknown database role: {role}\")\n\n        session = sessionmaker(bind=engine, autoflush=False)()\n        logging.info(\"Session created for role: %s\", role)\n        \n        try:\n            yield session\n            session.commit()\n        except Exception as e:\n            logging.error(\"Session rollback due to an exception: %s\", e)\n            session.rollback()\n            raise\n        finally:\n            session.close()\n            logging.info(\"Session closed for role: %s\", role)\n\n    def execute_sql_from_file(self, file_path: str):\n        \"\"\"\n        Executes all SQL statements from a given .sql file.\n        \n        Note: This is for schema changes or bulk operations and runs outside a session transaction.\n        \"\"\"\n        if not file_path.endswith('.sql'):\n            raise ValueError(\"File must be a .sql file.\")\n        if not os.path.exists(file_path):\n            raise FileNotFoundError(f\"SQL file not found at: {file_path}\")\n\n        with open(file_path, \"r\") as file:\n            sql_script = file.read()\n            try:\n                # Use the write engine for executing schema changes or data loads\n                with self._write_engine.connect() as connection:\n                    connection.execute(text(sql_script))\n                    # For engines that don't support autocommit on DDL\n                    if connection.dialect.supports_alter:\n                        connection.commit()\n                logging.info(\"Successfully executed SQL from %s\", file_path)\n            except Exception as e:\n                logging.error(\"Error executing %s: %s\", file_path, e)\n                raise",
+    "dependencies_count": 5,
+    "dependencies": [5,6,7,8,9]
+  },
+  {
+    "index": 5,
+    "type": "Function",
+    "name": "__init__",
+    "uri": "/Users/bytedance/Bowen_Yang_SWE/PRIVATE_WORKS/DeepRepo/testing/sample_projects/sample_1_db_client/mysql/main_db.py",
+    "code_content": "def __init__(self, db_handle: DBHandle):\n        self._db_handle = db_handle\n        self._write_engine = db_handle.write_engine\n        self._read_engine = db_handle.read_engine\n        self._base = db_handle.base_cls",
+    "dependencies_count": 0,
+    "dependencies": []
+  },
+  {
+    "index": 6,
+    "type": "Function",
+    "name": "list_all_table_names",
+    "uri": "/Users/bytedance/Bowen_Yang_SWE/PRIVATE_WORKS/DeepRepo/testing/sample_projects/sample_1_db_client/mysql/main_db.py",
+    "code_content": "def list_all_table_names(self) -> list:\n        \"\"\"Returns a list of all table names discovered in the database schema.\"\"\"\n        return list(self._base.classes.keys())",
+    "dependencies_count": 0,
+    "dependencies": []
+  },
+  {
+    "index": 7,
+    "type": "Function",
+    "name": "get_table_class",
+    "uri": "/Users/bytedance/Bowen_Yang_SWE/PRIVATE_WORKS/DeepRepo/testing/sample_projects/sample_1_db_client/mysql/main_db.py",
+    "code_content": "def get_table_class(self, table_name: str):\n        \"\"\"\n        Returns the mapped class for a given table name.\n\n        Args:\n            table_name (str): The name of the table.\n\n        Returns:\n            The SQLAlchemy mapped class, or None if not found.\n        \"\"\"\n        return self._base.classes.get(table_name)",
+    "dependencies_count": 0,
+    "dependencies": []
+  },
+  {
+    "index": 8,
+    "type": "Function",
+    "name": "session_scope",
+    "uri": "/Users/bytedance/Bowen_Yang_SWE/PRIVATE_WORKS/DeepRepo/testing/sample_projects/sample_1_db_client/mysql/main_db.py",
+    "code_content": "def session_scope(self, role: str = DBRole.WRITE) -> Session:\n        \"\"\"\n        Provides a transactional scope around a series of operations.\n        This context manager handles session creation, commit, rollback, and closing.\n\n        Args:\n            role (str): The database role, either DBRole.WRITE or DBRole.READ.\n\n        Yields:\n            Session: The SQLAlchemy session object.\n        \"\"\"\n        if role == DBRole.WRITE:\n            engine = self._write_engine\n        elif role == DBRole.READ:\n            engine = self._read_engine\n        else:\n            raise ValueError(f\"Unknown database role: {role}\")\n\n        session = sessionmaker(bind=engine, autoflush=False)()\n        logging.info(\"Session created for role: %s\", role)\n        \n        try:\n            yield session\n            session.commit()\n        except Exception as e:\n            logging.error(\"Session rollback due to an exception: %s\", e)\n            session.rollback()\n            raise\n        finally:\n            session.close()\n            logging.info(\"Session closed for role: %s\", role)",
+    "dependencies_count": 1,
+    "dependencies": [0]
+  },
+  {
+    "index": 9,
+    "type": "Function",
+    "name": "execute_sql_from_file",
+    "uri": "/Users/bytedance/Bowen_Yang_SWE/PRIVATE_WORKS/DeepRepo/testing/sample_projects/sample_1_db_client/mysql/main_db.py",
+    "code_content": "def execute_sql_from_file(self, file_path: str):\n        \"\"\"\n        Executes all SQL statements from a given .sql file.\n        \n        Note: This is for schema changes or bulk operations and runs outside a session transaction.\n        \"\"\"\n        if not file_path.endswith('.sql'):\n            raise ValueError(\"File must be a .sql file.\")\n        if not os.path.exists(file_path):\n            raise FileNotFoundError(f\"SQL file not found at: {file_path}\")\n\n        with open(file_path, \"r\") as file:\n            sql_script = file.read()\n            try:\n                # Use the write engine for executing schema changes or data loads\n                with self._write_engine.connect() as connection:\n                    connection.execute(text(sql_script))\n                    # For engines that don't support autocommit on DDL\n                    if connection.dialect.supports_alter:\n                        connection.commit()\n                logging.info(\"Successfully executed SQL from %s\", file_path)\n            except Exception as e:\n                logging.error(\"Error executing %s: %s\", file_path, e)\n                raise"
+  }
+]
