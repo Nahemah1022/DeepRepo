@@ -27,14 +27,17 @@ class Scanner:
                 node.index = Index(name=node.name, location=node, context="") # TODO: build context with code block and dependencies
                 self.graph.add_decl(node)
 
+        print("BOWEN YANG DEBUG", self.graph.to_json())
+
     def isinternal(self, symbol: Symbol):
         return symbol.decl.uri.startswith(self.lsp.root_uri) and symbol.decl.uri.find(".venv") == -1
 
 if __name__ == "__main__":
-    pylsp = PythonLangServer("/Users/nahemah1022/NVIDIA/proj/aistore")
+    # pylsp = PythonLangServer("/Users/nahemah1022/NVIDIA/proj/aistore")
+    pylsp = PythonLangServer("/Users/bytedance/Bowen_Yang_SWE/WATCHDOG%20DEV/TESTING-WATCHDOG/watchdog")
     # pylsp = PythonLangServer("/Users/nahemah1022/Projects/DeepRepo")
     doc = Document(
-        filepath='file:///Users/nahemah1022/NVIDIA/proj/aistore/python/aistore/sdk/client.py',
+        filepath='/Users/bytedance/Bowen_Yang_SWE/WATCHDOG%20DEV/TESTING-WATCHDOG/watchdog/main.py',
         # filepath='file:///Users/nahemah1022/Projects/DeepRepo/mcp_system/graph/scanner.py',
         lsp=pylsp,
     )

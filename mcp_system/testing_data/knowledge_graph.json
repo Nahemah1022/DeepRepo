@@ -1,0 +1,31 @@
+{
+  "nodes": [
+    {
+      "id": "file:///Users/bytedance/Bowen_Yang_SWE/PRIVATE_WORKS/DeepRepo/mcp_system/client/client.py:4:4",
+      "type": "Function",
+      "name": "log_handler",
+      "uri": "file:///Users/bytedance/Bowen_Yang_SWE/PRIVATE_WORKS/DeepRepo/mcp_system/client/client.py",
+      "position": {
+        "line": 4,
+        "character": 4
+      },
+      "dependencies_count": 0,
+      "index_name": "log_handler",
+      "index_context": ""
+    },
+    {
+      "id": "file:///Users/bytedance/Bowen_Yang_SWE/PRIVATE_WORKS/DeepRepo/mcp_system/client/client.py:10:4",
+      "type": "Function",
+      "name": "main",
+      "uri": "file:///Users/bytedance/Bowen_Yang_SWE/PRIVATE_WORKS/DeepRepo/mcp_system/client/client.py",
+      "position": {
+        "line": 10,
+        "character": 4
+      },
+      "dependencies_count": 0,
+      "index_name": "main",
+      "index_context": ""
+    }
+  ],
+  "edges": []
+}
