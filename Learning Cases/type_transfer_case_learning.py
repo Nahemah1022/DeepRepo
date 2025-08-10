@@ -81,7 +81,5 @@ This is node 4 and state is {'bar': 'My name is a pig'}
 1. 这里明明node 4 的input type和3的ouput type完全不同，但还是有这个值。
 2. 如果 comment掉node1和node2的那条edge，2不会自动触发，就导致黑板里没这个值，然后处理到node_3到node_4就会报错
 
-总结：
-所以每次传入的值都是黑板里的所有变量，然后input的parameter只是一个筛选器，从黑板取一个subset传入。和上一个node是谁，产出什么结果没关系
-add edge是做什么的？只是用来做好graph用的，看起来langgraph并不是事件驱动，并不是根据某种特定数启动就启动， 
+    
 """
