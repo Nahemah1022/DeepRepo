@@ -13,3 +13,4 @@ class NodeInfo:
 class CacheAgentState:
     node: NodeInfo
     dependencies:List[NodeInfo]
+    context: Optional[str]

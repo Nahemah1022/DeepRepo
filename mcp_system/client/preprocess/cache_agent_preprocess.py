@@ -1,14 +1,17 @@
 import json
 from preprocess.preprocess import Preprocess
 from data_models.cache_agent_data_models import NodeInfo, CacheAgentState
-from typing import List
+from typing import List, Dict
 from collections import deque
 
 class CacheAgentPreprocess(Preprocess):
     def __init__(self, file_path: str):
         self.graph_path = file_path
         self.graph: List[CacheAgentState] = []
+        self.node_map: Dict[NodeInfo: CacheAgentState] = {}
 
+    
+    
     def loadgraph(self):
         """
         Loads a graph from a JSON file, sorts it topologically,
@@ -84,12 +87,12 @@ class CacheAgentPreprocess(Preprocess):
                 )
             
             # Create the final CacheAgentState object and append it
-            final_graph.append(
-                CacheAgentState(
-                    node=current_node_info,
-                    dependencies=dependency_nodes_info
-                )
-            )
+            current_node = CacheAgentState(
+                                node=current_node_info,
+                                dependencies=dependency_nodes_info
+                            )
+            final_graph.append(current_node)
+            self.node_map[current_node_info] = current_node
 
         self.graph = final_graph
         print(f"Graph loaded and sorted successfully. Total nodes: {len(self.graph)}")
