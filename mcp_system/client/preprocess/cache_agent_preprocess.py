@@ -10,9 +10,12 @@ class CacheAgentPreprocess(Preprocess):
         self.graph: List[CacheAgentState] = []
         self.node_map: Dict[NodeInfo: CacheAgentState] = {}
 
+    def get_graph(self):
+        if not self.graph and self.node_map:
+            self._load_graph()
+        return self.node_map
     
-    
-    def loadgraph(self):
+    def _load_graph(self):
         """
         Loads a graph from a JSON file, sorts it topologically,
         and populates the self.graph attribute.
@@ -96,3 +99,4 @@ class CacheAgentPreprocess(Preprocess):
 
         self.graph = final_graph
         print(f"Graph loaded and sorted successfully. Total nodes: {len(self.graph)}")
+

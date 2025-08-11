@@ -90,18 +90,26 @@ class CacheAgentNodes:
 
         # 4. Return an updated copy of the state
         # Using dataclasses.replace is a clean way to create a new, updated instance.
-        target_state.context = generated_context
+        self.node_map[target_state.node].context = generated_context
             
-        return target_state
+        return self.node_map[target_state.node]
     
 
 class CacheAgent(Agent):
     def __init__(self, preprocess:Preprocess):
         super.__init__(preprocess=preprocess, overall_state=CacheAgentState)
-    
+        self.llm = ChatOpenAI(model="gpt-4o", temperature=0.0)
+        self.cache_agent_nodes = CacheAgentNodes(llm=self.llm, node_map=self.preprocess.get_graph())
+        
 
     def build_agent(self):
-        pass
+        self.builder.add_node("fill_context",self.cache_agent_nodes.fill_context)
+        self.builder.add_edge(START, "fill_context")
+        self.builder.add_edge("fill_context", END)
+        self.agent = self.builder.compile()
+        
+        
+        
 
     
     def start(self):
