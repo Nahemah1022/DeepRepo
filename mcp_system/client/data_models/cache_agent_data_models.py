@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import Optional, List, Dict, Tuple
 
 
-@dataclass
+@dataclass(frozen=True)
 class NodeInfo:
     type: str
     name: str

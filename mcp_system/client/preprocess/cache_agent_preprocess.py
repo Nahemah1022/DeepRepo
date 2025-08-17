@@ -1,31 +1,63 @@
 import json
 from preprocess.preprocess import Preprocess
 from data_models.cache_agent_data_models import NodeInfo, CacheAgentState
-from typing import List, Dict
+from typing import List, Dict, Optional
 from collections import deque
+from dataclasses import asdict
 
 class CacheAgentPreprocess(Preprocess):
-    def __init__(self, file_path: str):
+    def __init__(self, file_path: str, output_path="/Users/bytedance/Bowen_Yang_SWE/PRIVATE_WORKS/DeepRepo/testing/testing_graph/sample_1_result_graph/tmp_1.json"):
         self.graph_path = file_path
+        self.output_path = output_path
         self.graph: List[CacheAgentState] = []
         self.node_map: Dict[NodeInfo: CacheAgentState] = {}
 
     def get_graph(self):
-        if not self.graph and self.node_map:
+        print(self.graph, self.node_map, bool(not self.graph and not self.node_map))
+        if not self.graph and not self.node_map:
             self._load_graph()
+        print("Trigger here")
         return self.node_map
     
+    def get_data(self):
+        for data in self.graph:
+            yield(data)
+    
+    def store_data(self):
+        """
+        Serializes the list of CacheAgentState objects from self.graph
+        into a JSON file specified by self.graph_path.
+        """
+        print(f"Attempting to store data in {self.graph_path}...")
+        # 1. Convert the list of dataclass objects to a list of dictionaries.
+        #    asdict() recursively handles the nested NodeInfo objects.
+        data_to_store = [asdict(state) for state in self.graph]
+        # 2. Open the file in write mode and dump the data.
+        #    The 'with' statement ensures the file is properly closed.
+        try:
+            with open(self.output_path, 'w', encoding='utf-8') as f:
+                # json.dump writes the data to the file object 'f'.
+                # 'indent=4' makes the JSON file human-readable.
+                json.dump(data_to_store, f, indent=4)
+            print(f"✅ Data successfully stored in {self.output_path}")
+        except IOError as e:
+            print(f"❌ Error storing data: {e}")
+
     def _load_graph(self):
         """
         Loads a graph from a JSON file, sorts it topologically,
         and populates the self.graph attribute.
         """
+        print("load graph tirgtgered")
         # 1. Load the raw data from the JSON file
         with open(self.graph_path, 'r') as f:
             raw_nodes = json.load(f)
 
         if not raw_nodes:
+            print("DEBUG: Graph Load Failure")
             return
+        
+        print(f"BOWEN YANG DEBUG: GRAPH LOAD SUCCES SWITH RAW NODES {raw_nodes}")
 
         # 2. Prepare data structures for sorting
         # Create a quick-lookup map from index to node data
@@ -92,7 +124,8 @@ class CacheAgentPreprocess(Preprocess):
             # Create the final CacheAgentState object and append it
             current_node = CacheAgentState(
                                 node=current_node_info,
-                                dependencies=dependency_nodes_info
+                                dependencies=dependency_nodes_info,
+                                context=None
                             )
             final_graph.append(current_node)
             self.node_map[current_node_info] = current_node

@@ -86,6 +86,7 @@ class CacheAgentNodes:
         generated_context = f"This is a generated summary for the '{target_state.node.type}' named '{target_state.node.name}'."
         if dependency_contexts:
             generated_context += f" It utilizes its {len(dependency_contexts)} dependencies to perform its function."
+        generated_context += response.content
 
 
         # 4. Return an updated copy of the state
@@ -97,10 +98,10 @@ class CacheAgentNodes:
 
 class CacheAgent(Agent):
     def __init__(self, preprocess:Preprocess):
-        super.__init__(preprocess=preprocess, overall_state=CacheAgentState)
+        super().__init__(preprocess=preprocess, overall_state=CacheAgentState)
         self.llm = ChatOpenAI(model="gpt-4o", temperature=0.0)
         self.cache_agent_nodes = CacheAgentNodes(llm=self.llm, node_map=self.preprocess.get_graph())
-        
+        self.build_agent()
 
     def build_agent(self):
         self.builder.add_node("fill_context",self.cache_agent_nodes.fill_context)
@@ -108,11 +109,10 @@ class CacheAgent(Agent):
         self.builder.add_edge("fill_context", END)
         self.agent = self.builder.compile()
         
-        
-        
-
     
     def start(self):
-        
-        self.preprocess.get_data()
+        for data in self.preprocess.get_data():
+            self.agent.invoke(data)
+        self.preprocess.store_data()
+
         

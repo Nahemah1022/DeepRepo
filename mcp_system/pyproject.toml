@@ -9,4 +9,6 @@ dependencies = [
     "fastmcp>=2.10.2",
     "lsprotocol==2023.0.1",
     "pyright>=1.1.403",
+    "langgraph>=0.0.50",
+    "langchain-openai>=0.3.30"
 ]
